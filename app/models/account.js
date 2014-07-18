@@ -7,14 +7,26 @@ function Account(number, name, amount, type){
   this.type = type;
   this.deposits = [];
   this.withdraws = [];
+  this.penalties = 0;
 }
+
 
 Account.prototype.deposit = function(amount){
   this.balance += amount;
   this.deposits.push(amount);
 };
 
-
+Account.prototype.withdraw = function(amount){
+  if(this.penalties > 3){
+    return;
+  }
+  this.balance -= amount;
+  this.withdraws.push(amount);
+  if(this.balance < 0){
+    this.balance -= 50;
+    this.penalties++;
+  }
+};
 
 
 
