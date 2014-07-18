@@ -27,7 +27,12 @@ describe('Account', function(){
       expect(acct.deposits).to.have.length(1);
       expect(acct.deposits[0]).to.equal(200);
     });
-    it('Should not deposit if acct suspended', function (){});
+    it('Should not deposit if acct suspended', function (){
+      var acct = new Account(3, 'Sara', 1500, 'savings');
+      acct.penalties = 5;
+      acct.deposit(200);
+      expect(acct.balance).to.equal(1500);
+    });
   });
   describe('#withdraw', function(){
     it('should decrease balance and add to withdraws array', function(){

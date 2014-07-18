@@ -10,8 +10,10 @@ function Account(number, name, amount, type){
   this.penalties = 0;
 }
 
-
 Account.prototype.deposit = function(amount){
+  if(this.penalties > 3){
+    return;
+  }
   this.balance += amount;
   this.deposits.push(amount);
 };
@@ -28,10 +30,4 @@ Account.prototype.withdraw = function(amount){
   }
 };
 
-
-
-
-
   module.exports = Account;
-
-
